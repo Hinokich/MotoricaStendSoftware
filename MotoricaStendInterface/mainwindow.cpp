@@ -8,8 +8,10 @@
 
 QStringList driveTypesList = {"DC","Servo","HDLC","ACH"};
 QStringList controlTypesList = {"Ток", "Ток+Сила", "Ток+Сила+Температура", "Таймер"};
+QStringList testTypesList = {"Идет тестирование", "Пауза", "Остановлен", "Перегрев","Незапланированная саморазборка"};
 QVector<int> values(15);
 QTimer dataTimer;
+QTimer scaleTimer;
 QTime dataTime(QTime::currentTime());
 
 Porthandler* handler = new Porthandler(&values);
@@ -18,6 +20,17 @@ QSerialPortInfo portInfo;
 QString portName;
 int portSpeed = DEFAULT_SPEED;
 bool connected = false;
+
+int timeShake = 0;
+int timeCooling = 0;
+int forceMinimum = 0;
+int tempStop = 0;
+int currentStop = 0;
+int tensoCalibValue = 0;
+int testState = 3;
+int currentPlotMax = 500;
+int forcePlotMax = 2000;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     setupGUI();
     connect(this, SIGNAL(startListening()), handler, SLOT(process()));
     connect(handler, SIGNAL(dataGet()), this, SLOT(refreshData()));
+    connect(&scaleTimer, SIGNAL(timeout()), this, SLOT(plotScalingSlot()));
     handler->moveToThread(handlerThread);
     handlerThread->start();
 }
@@ -40,6 +54,12 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::setupGUI(){
+    overheat.load("src/fire.png");
+    overheatInactive.load("src/fire_inact.png");
+    RUD.load("src/gear.png");
+    RUDInactive.load("src/gear_inact.png");
+    ui->labelOverheat->setPixmap(overheatInactive);
+    ui->labelRUD->setPixmap(RUDInactive);
 
     QPixmap pixmap("src/logo.png");
     ui->labelLogo->setPixmap(pixmap);
@@ -54,26 +74,34 @@ void MainWindow::setupGUI(){
     }
 
     ui->plotter1->addGraph();
-    ui->plotter1->graph(0)->setPen(QPen(QColor("#000000")));
+    ui->plotter1->graph(0)->setPen(QPen(QColor("#DD0000")));
 
     ui->plotter2->addGraph();
-    ui->plotter2->graph(0)->setPen(QPen(QColor("#000000")));
+    ui->plotter2->graph(0)->setPen(QPen(QColor("#0000AA")));
 
     QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
     timeTicker->setTimeFormat("%h:%m:%s");
     ui->plotter1->xAxis->setTicker(timeTicker);
     ui->plotter1->yAxis->setLabel("Ток, мА");
     ui->plotter1->xAxis->setLabel("Время, с");
-    ui->plotter1->yAxis->setRange(0,3000);
+    ui->plotter1->yAxis->setRange(0,currentPlotMax);
     ui->plotter1->xAxis->setRange(0, 10);
 
     ui->plotter2->xAxis->setTicker(timeTicker);
     ui->plotter2->yAxis->setLabel("Усилие, г");
     ui->plotter2->xAxis->setLabel("Время, с");
-    ui->plotter2->yAxis->setRange(0,15000);
+    ui->plotter2->yAxis->setRange(0,forcePlotMax);
     ui->plotter2->xAxis->setRange(0, 10);
 
     connect(&dataTimer, SIGNAL(timeout()), this, SLOT(realtimeDataSlot()));
+}
+
+void MainWindow::setupStartup(){
+    timeShake = ui->spinBoxTimeShake->value();
+    timeCooling = ui->spinBoxTimeCooling->value();
+    forceMinimum = ui->spinBoxForceMinimum->value();
+    tempStop = ui->spinBoxTempStop->value();
+    currentStop = ui->spinBoxCurrentStop->value();
 }
 
 
@@ -83,6 +111,7 @@ void MainWindow::on_pushButtonConnect_clicked(){
         connected = false;
         ui->pushButtonConnect->setText("Подключить");
         dataTimer.stop();
+        scaleTimer.stop();
     }else{
         portSpeed = DEFAULT_SPEED;
         portName = ui->comboBoxPort->currentText();
@@ -92,6 +121,7 @@ void MainWindow::on_pushButtonConnect_clicked(){
             ui->pushButtonConnect->setText("Отключить");
             emit startListening();
             dataTimer.start(15);
+            setupStartup();
         }
     }
 }
@@ -109,10 +139,39 @@ void MainWindow::refreshData(){
     ui->labelTempStop->setNum(values.value(9));
     ui->labelNoise->setNum(values.value(10));
     ui->labelVoltage->setNum(values.value(11));
+    ui->labelCurrentAverage->setNum(values.value(13));
+    ui->labelForceMaximum->setNum(values.value(14));
+
+    if(values.value(12)!=testState){
+        ui->labelOverheat->setPixmap(overheatInactive);
+        ui->labelRUD->setPixmap(RUDInactive);
+        if(values.value(12)==4){ //если перегрев
+            ui->labelOverheat->setPixmap(overheat);
+            ui->labelRUD->setPixmap(RUDInactive);
+        }
+        if(values.value(12)==5){ //если саморазборка
+            ui->labelOverheat->setPixmap(overheatInactive);
+            ui->labelRUD->setPixmap(RUD);
+        }
+    }
+
+    testState = values.value(12);
+    ui->labelTestState->setText(testTypesList.value(testState-1));
 
     double key = dataTime.elapsed()/1000.0f;
-    ui->plotter1->graph(0)->addData(key, values.value(0));
-    ui->plotter2->graph(0)->addData(key, values.value(4));
+    ui->plotter1->graph(0)->addData(key, values.value(1)); //Ток
+    ui->plotter2->graph(0)->addData(key, values.value(2)); //Сила
+
+    if(values.value(1) >= currentPlotMax){
+        currentPlotMax = values.value(1);
+        ui->plotter1->yAxis->setRange(0,currentPlotMax*1.2f);
+        scaleTimer.start(12000);
+    }
+    if(values.value(2) >= forcePlotMax){
+        forcePlotMax = values.value(2);
+        ui->plotter2->yAxis->setRange(0,forcePlotMax*1.2f);
+        scaleTimer.start(12000);
+    }
 }
 
 void MainWindow::realtimeDataSlot(){
@@ -125,6 +184,7 @@ void MainWindow::realtimeDataSlot(){
 
 void MainWindow::on_pushButtonStart_clicked()
 {
+    setupStartup();
     handler->commit(QString("1,1,1\n").toUtf8());
 }
 
@@ -153,6 +213,7 @@ void MainWindow::on_spinBoxTimeShake_editingFinished()
     int val = ui->spinBoxTimeShake->value();
     QString qstrval = QString::number(val);
     handler->commit(QString("1,2,"+qstrval+'\n').toUtf8());
+    timeShake = val;
 }
 
 void MainWindow::on_spinBoxTimeCooling_editingFinished()
@@ -160,6 +221,7 @@ void MainWindow::on_spinBoxTimeCooling_editingFinished()
     int val = ui->spinBoxTimeCooling->value();
     QString qstrval = QString::number(val);
     handler->commit(QString("1,3,"+qstrval+'\n').toUtf8());
+    timeCooling = val;
 }
 
 void MainWindow::on_spinBoxForceMinimum_editingFinished()
@@ -167,6 +229,7 @@ void MainWindow::on_spinBoxForceMinimum_editingFinished()
     int val = ui->spinBoxForceMinimum->value();
     QString qstrval = QString::number(val);
     handler->commit(QString("1,5,"+qstrval+'\n').toUtf8());
+    forceMinimum = val;
 }
 
 void MainWindow::on_spinBoxCurrentStop_editingFinished()
@@ -174,6 +237,7 @@ void MainWindow::on_spinBoxCurrentStop_editingFinished()
     int val = ui->spinBoxCurrentStop->value();
     QString qstrval = QString::number(val);
     handler->commit(QString("1,4,"+qstrval+'\n').toUtf8());
+    currentStop = val;
 }
 
 void MainWindow::on_spinBoxTempStop_editingFinished()
@@ -181,4 +245,48 @@ void MainWindow::on_spinBoxTempStop_editingFinished()
     int val = ui->spinBoxTempStop->value();
     QString qstrval = QString::number(val);
     handler->commit(QString("1,10,"+qstrval+'\n').toUtf8());
+    tempStop = val;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    tensoCalibValue = ui->spinBoxTensoCalib->value();
+    QString qstrval = QString::number(tensoCalibValue);
+    handler->commit(QString("1,13,"+qstrval+'\n').toUtf8());
+}
+
+void MainWindow::on_checkBoxCurrentSmooth_stateChanged(int arg1)
+{
+    if(arg1==0){
+        handler->commit(QString("1,14,0\n").toUtf8());
+    }else{
+        handler->commit(QString("1,14,1\n").toUtf8());
+    }
+}
+
+void MainWindow::on_checkBoxForceSmooth_stateChanged(int arg1)
+{
+    if(arg1==0){
+        handler->commit(QString("1,15,0\n").toUtf8());
+    }else{
+        handler->commit(QString("1,15,1\n").toUtf8());
+    }
+}
+
+void MainWindow::plotScalingSlot(){
+    scaleTimer.stop();
+    currentPlotMax = values.value(1);
+    ui->plotter1->yAxis->setRange(0,currentPlotMax*1.2f);
+    forcePlotMax = values.value(2);
+    ui->plotter2->yAxis->setRange(0,forcePlotMax*1.2f);
+}
+
+void MainWindow::on_comboBoxDrive_currentIndexChanged(int index)
+{
+    handler->commit(QString("1,7,"+QString::number(index+1)+"\n").toUtf8());
+}
+
+void MainWindow::on_comboBoxControl_currentIndexChanged(int index)
+{
+    handler->commit(QString("1,16,"+QString::number(index+1)+"\n").toUtf8());
 }

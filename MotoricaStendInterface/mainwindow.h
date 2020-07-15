@@ -18,6 +18,7 @@ public:
 public slots:
     void refreshData();
     void realtimeDataSlot();
+    void plotScalingSlot();
 
 signals:
     void startListening();
@@ -45,8 +46,23 @@ private slots:
 
     void on_spinBoxTempStop_editingFinished();
 
+    void on_pushButton_clicked();
+
+    void on_checkBoxCurrentSmooth_stateChanged(int arg1);
+
+    void on_checkBoxForceSmooth_stateChanged(int arg1);
+
+    void on_comboBoxDrive_currentIndexChanged(int index);
+
+    void on_comboBoxControl_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
     void setupGUI();
+    void setupStartup();
+    QPixmap overheat;
+    QPixmap overheatInactive;
+    QPixmap RUD;
+    QPixmap RUDInactive;
 };
 #endif // MAINWINDOW_H

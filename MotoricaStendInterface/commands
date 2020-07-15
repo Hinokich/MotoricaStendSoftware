@@ -1,0 +1,42 @@
+Commands:
+
+0 - Update
+        Return: - Shakes Number		UINT16
+                - Current (mA)		UINT16
+                - Strength(g)		UINT16
+                - Shake Time (ms)	UINT16
+                - Cool Time (ms)	UINT16
+                - Stop Current		UINT16
+                - Stop Strenghth(g)	UINT16
+                - Temperature(°C)	UINT8
+                - Nominal Temp(°C)	UINT8
+                - Stop Temp(°C)		UINT8
+                - Noise Level(db)	UINT8
+                - Voltage (mV)		UINT16
+
+1 - Write
+        Registers:
+                - 1	Start / Pause / Stop / Stop due Overheat / Stop due Mech Fault
+                        1        2      3           4                   5
+                - 2	Shake Time (ms) MSB FIRST
+                - 3	Cool Time (ms)  MSB FIRST
+                - 4     Stop Current(mA)MSB FIRST
+                - 5	Stop Strength(g)MSB FIRST
+
+                        Open / Close / Invert / Cancel invert
+                - 6       1	2	3	4
+
+                        HDLC / Servo / DC
+                - 7	1       2      3
+
+                        Servo positon
+                - 8	Angle (0°-180°)			- UINT8
+
+                - 9     Nominal Temperature(°C) 	- UINT8
+                - 10    Stop    Temperature(°C) 	- UINT8
+                - 11	Start Servo angle(0°-180°)	- UINT8
+                - 12	Stop Servo angle(0°-180°)	- UINT8
+                - 13    Tenso Calibration Mass Value
+                - 14    Do Current Smooth yes/no [1/0]
+                - 15    Do Force Smooth yes/no [1/0]
+                - 16    Control Type

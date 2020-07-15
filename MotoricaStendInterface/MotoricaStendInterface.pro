@@ -40,5 +40,6 @@ win32 {
 }
 
 DISTFILES += \
+    commands \
     file.rc \
     file.rc
