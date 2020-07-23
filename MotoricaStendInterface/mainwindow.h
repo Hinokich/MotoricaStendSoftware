@@ -56,6 +56,12 @@ private slots:
 
     void on_comboBoxControl_currentIndexChanged(int index);
 
+    void on_checkBoxShakesTarget_stateChanged(int arg1);
+
+    void on_pushButtonRefresh_clicked();
+
+    void on_spinBoxShakesTarget_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     void setupGUI();

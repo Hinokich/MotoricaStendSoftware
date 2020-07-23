@@ -55,7 +55,7 @@ void Porthandler::process(){
             if(port.canReadLine()){
                 int lineLength = port.readLine(buf, 256);
                 QByteArray input(buf);
-                //qDebug() << "Input Buf:" << input;
+                qDebug() << "Input Buf:" << input;
                 QList<QByteArray> sep = input.split(' ');
                 for(int i=0; i<paramsCount; i++){
                     int val = sep.value(i).toInt();

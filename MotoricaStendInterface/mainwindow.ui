@@ -19,10 +19,73 @@
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="10" column="1">
+         <widget class="QLabel" name="labelVoltage">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Темп. остановки</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="labelForce">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1">
+         <widget class="QLabel" name="labelTimeCooling">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Уровень шума</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Время простоя</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Минимальная сила</string>
+          </property>
+         </widget>
+        </item>
         <item row="13" column="0">
          <widget class="QLabel" name="label_13">
           <property name="text">
            <string>Ток отсечки</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
+         <widget class="QLabel" name="labelTimeShake">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="1">
+         <widget class="QLabel" name="labelForceMaximum">
+          <property name="text">
+           <string>0</string>
           </property>
          </widget>
         </item>
@@ -33,13 +96,17 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="comboBoxPort"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_3">
+        <item row="16" column="1">
+         <widget class="QLabel" name="labelCurrentAverage">
           <property name="text">
-           <string>Сила тока</string>
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Напряжение</string>
           </property>
          </widget>
         </item>
@@ -50,24 +117,24 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="1">
+         <widget class="QLabel" name="labelTempNom">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButtonConnect">
+          <property name="text">
+           <string>Соединение</string>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="1">
          <widget class="QLabel" name="labelShakesCount">
           <property name="text">
            <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="13" column="1">
-         <widget class="QLabel" name="labelCurrentStop">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="11" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Время сжатия</string>
           </property>
          </widget>
         </item>
@@ -87,24 +154,10 @@
           </property>
          </widget>
         </item>
-        <item row="17" column="0">
-         <widget class="QLabel" name="label_21">
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Максимальное усилие за цикл</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Время простоя</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonConnect">
-          <property name="text">
-           <string>Соединение</string>
+           <string>Сила тока</string>
           </property>
          </widget>
         </item>
@@ -115,73 +168,17 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_4">
+        <item row="18" column="1">
+         <widget class="QLabel" name="labelTestState">
           <property name="text">
-           <string>Сила</string>
+           <string>Остановлен</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="1">
-         <widget class="QLabel" name="labelTimeShake">
+        <item row="18" column="0">
+         <widget class="QLabel" name="label_22">
           <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="1">
-         <widget class="QLabel" name="labelTempNom">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="1">
-         <widget class="QLabel" name="labelTimeCooling">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Ном. температура</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Напряжение</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLabel" name="labelCurrent">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="14" column="0">
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Минимальная сила</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_8">
-          <property name="text">
-           <string>Темп. остановки</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>Уровень шума</string>
+           <string>Состояние испытаний</string>
           </property>
          </widget>
         </item>
@@ -192,22 +189,43 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="QLabel" name="labelTemp">
+        <item row="13" column="1">
+         <widget class="QLabel" name="labelCurrentStop">
           <property name="text">
            <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>Максимальное усилие за цикл</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Сила</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Время сжатия</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0" colspan="2">
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
         <item row="8" column="1">
          <widget class="QLabel" name="labelTempStop">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
-        </item>
-        <item row="10" column="1">
-         <widget class="QLabel" name="labelVoltage">
           <property name="text">
            <string>0</string>
           </property>
@@ -220,47 +238,40 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="1">
-         <widget class="QLabel" name="labelForce">
+        <item row="4" column="1">
+         <widget class="QLabel" name="labelCurrent">
           <property name="text">
            <string>0</string>
           </property>
          </widget>
         </item>
-        <item row="18" column="0">
-         <widget class="QLabel" name="label_22">
-          <property name="text">
-           <string>Состояние испытаний</string>
-          </property>
-         </widget>
-        </item>
-        <item row="18" column="1">
-         <widget class="QLabel" name="labelTestState">
-          <property name="text">
-           <string>Остановлен</string>
-          </property>
-         </widget>
-        </item>
-        <item row="16" column="1">
-         <widget class="QLabel" name="labelCurrentAverage">
+        <item row="6" column="1">
+         <widget class="QLabel" name="labelTemp">
           <property name="text">
            <string>0</string>
           </property>
          </widget>
         </item>
-        <item row="15" column="0" colspan="2">
-         <widget class="Line" name="line">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Ном. температура</string>
           </property>
          </widget>
         </item>
-        <item row="17" column="1">
-         <widget class="QLabel" name="labelForceMaximum">
-          <property name="text">
-           <string>0</string>
-          </property>
-         </widget>
+        <item row="0" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QComboBox" name="comboBoxPort"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonRefresh">
+            <property name="text">
+             <string>Обновить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -273,13 +284,6 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout_2">
-        <item row="7" column="0">
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>Минимальная сила</string>
-          </property>
-         </widget>
-        </item>
         <item row="9" column="1">
          <widget class="QSpinBox" name="spinBoxTempStop">
           <property name="value">
@@ -287,10 +291,27 @@
           </property>
          </widget>
         </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_16">
+        <item row="6" column="1">
+         <widget class="QSpinBox" name="spinBoxTimeCooling">
+          <property name="maximum">
+           <number>100000</number>
+          </property>
+          <property name="value">
+           <number>1000</number>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_12">
           <property name="text">
-           <string>Время сжатия, мс</string>
+           <string>Тип привода</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>Ток отсечки, мА</string>
           </property>
          </widget>
         </item>
@@ -307,6 +328,16 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Минимальная сила</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboBoxDrive"/>
+        </item>
         <item row="5" column="1">
          <widget class="QSpinBox" name="spinBoxTimeShake">
           <property name="maximum">
@@ -317,30 +348,10 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="1">
-         <widget class="QSpinBox" name="spinBoxTimeCooling">
-          <property name="maximum">
-           <number>100000</number>
-          </property>
-          <property name="value">
-           <number>1000</number>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_15">
           <property name="text">
            <string>Тип управления</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="1">
-         <widget class="QSpinBox" name="spinBoxCurrentStop">
-          <property name="maximum">
-           <number>10000</number>
-          </property>
-          <property name="value">
-           <number>600</number>
           </property>
          </widget>
         </item>
@@ -360,26 +371,23 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_12">
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_17">
           <property name="text">
-           <string>Тип привода</string>
+           <string>Время простоя, мс</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonStart">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="comboBoxControl"/>
+        </item>
+        <item row="7" column="1">
+         <widget class="QSpinBox" name="spinBoxForceMinimum">
+          <property name="maximum">
+           <number>1000000</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(170, 255, 127);</string>
-          </property>
-          <property name="text">
-           <string>Старт</string>
+          <property name="value">
+           <number>5000</number>
           </property>
          </widget>
         </item>
@@ -406,23 +414,20 @@
           </property>
          </widget>
         </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>Время простоя, мс</string>
+        <item row="8" column="1">
+         <widget class="QSpinBox" name="spinBoxCurrentStop">
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="value">
+           <number>600</number>
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="comboBoxDrive"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="comboBoxControl"/>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="label_19">
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_16">
           <property name="text">
-           <string>Ток отсечки, мА</string>
+           <string>Время сжатия, мс</string>
           </property>
          </widget>
         </item>
@@ -439,13 +444,42 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="1">
-         <widget class="QSpinBox" name="spinBoxForceMinimum">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonStart">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(170, 255, 127);</string>
+          </property>
+          <property name="text">
+           <string>Старт</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0">
+         <widget class="QCheckBox" name="checkBoxShakesTarget">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Цель количества сжатий</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1">
+         <widget class="QSpinBox" name="spinBoxShakesTarget">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="maximum">
            <number>1000000</number>
           </property>
           <property name="value">
-           <number>5000</number>
+           <number>1000</number>
           </property>
          </widget>
         </item>
@@ -511,7 +545,7 @@
          </size>
         </property>
         <property name="text">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -530,7 +564,7 @@
          </size>
         </property>
         <property name="text">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>

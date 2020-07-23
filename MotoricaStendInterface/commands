@@ -16,8 +16,8 @@ Commands:
 
 1 - Write
         Registers:
-                - 1	Start / Pause / Stop / Stop due Overheat / Stop due Mech Fault
-                        1        2      3           4                   5
+                - 1	Succes /Start / Pause / Stop / Stop due Overheat / Stop due Mech Fault
+                        0       1        2      3           4                   5
                 - 2	Shake Time (ms) MSB FIRST
                 - 3	Cool Time (ms)  MSB FIRST
                 - 4     Stop Current(mA)MSB FIRST
@@ -26,8 +26,8 @@ Commands:
                         Open / Close / Invert / Cancel invert
                 - 6       1	2	3	4
 
-                        HDLC / Servo / DC
-                - 7	1       2      3
+                        HDLC / Servo / DC / ACH
+                - 7	1       2      3    4
 
                         Servo positon
                 - 8	Angle (0°-180°)			- UINT8
@@ -40,3 +40,10 @@ Commands:
                 - 14    Do Current Smooth yes/no [1/0]
                 - 15    Do Force Smooth yes/no [1/0]
                 - 16    Control Type
+                - 17    Target shakes (-1 is off)
+
+
+0 0 0
+1 0 1
+0 1 1
+1 1 0

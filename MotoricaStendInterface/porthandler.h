@@ -33,7 +33,7 @@ private:
    bool doRead = false;
    bool isWriting = false;
    QByteArray internalBuffer;
-   QString header = " Shakes count, Current, Force, Shake Time, Cooling Time, Stop Current, Stop Force, Temp, Nominal Temp, Stop Temp, Noise, Voltage, param, param, param\n";
+   QString header = " Shakes count, Current, Force, Shake Time, Cooling Time, Stop Current, Stop Force, Temp, Nominal Temp, Stop Temp, Noise, Voltage, testState, currentAverage, forceMaximum\n";
    int paramsCount = 15;
 };
 

@@ -6,9 +6,9 @@
 #include <QDebug>
 #define DEFAULT_SPEED 115200
 
-QStringList driveTypesList = {"DC","Servo","HDLC","ACH"};
+QStringList driveTypesList = {"HDLC","Servo","DC","ACH"};
 QStringList controlTypesList = {"Ток", "Ток+Сила", "Ток+Сила+Температура", "Таймер"};
-QStringList testTypesList = {"Идет тестирование", "Пауза", "Остановлен", "Перегрев","Незапланированная саморазборка"};
+QStringList testTypesList = {"Испытание успешно завершено","Идет тестирование", "Пауза", "Остановлен", "Перегрев","Незапланированная саморазборка"};
 QVector<int> values(15);
 QTimer dataTimer;
 QTimer scaleTimer;
@@ -30,6 +30,7 @@ int tensoCalibValue = 0;
 int testState = 3;
 int currentPlotMax = 500;
 int forcePlotMax = 2000;
+int shakesTarget = 1000;
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -68,6 +69,8 @@ void MainWindow::setupGUI(){
 
     ui->comboBoxDrive->addItems(driveTypesList);
     ui->comboBoxControl->addItems(controlTypesList);
+    ui->comboBoxDrive->setCurrentIndex(2);
+    ui->comboBoxControl->setCurrentIndex(2);
 
     for(int i=0; i<portInfo.availablePorts().size();i++){
         ui->comboBoxPort->addItem(portInfo.availablePorts().at(i).portName());
@@ -156,7 +159,7 @@ void MainWindow::refreshData(){
     }
 
     testState = values.value(12);
-    ui->labelTestState->setText(testTypesList.value(testState-1));
+    ui->labelTestState->setText(testTypesList.value(testState));
 
     double key = dataTime.elapsed()/1000.0f;
     ui->plotter1->graph(0)->addData(key, values.value(1)); //Ток
@@ -288,5 +291,32 @@ void MainWindow::on_comboBoxDrive_currentIndexChanged(int index)
 
 void MainWindow::on_comboBoxControl_currentIndexChanged(int index)
 {
-    handler->commit(QString("1,16,"+QString::number(index+1)+"\n").toUtf8());
+
+}
+
+void MainWindow::on_checkBoxShakesTarget_stateChanged(int arg1)
+{
+    if(arg1==0){
+        handler->commit(QString("1,17,-1\n").toUtf8());
+        shakesTarget = -1;
+        ui->spinBoxShakesTarget->setEnabled(false);
+    }else{
+        shakesTarget = ui->spinBoxShakesTarget->value();
+        handler->commit(QString("1,17,"+QString::number(shakesTarget)+"\n").toUtf8());
+        ui->spinBoxShakesTarget->setEnabled(true);
+    }
+}
+
+void MainWindow::on_pushButtonRefresh_clicked()
+{
+    ui->comboBoxPort->clear();
+    for(int i=0; i<portInfo.availablePorts().size();i++){
+        ui->comboBoxPort->addItem(portInfo.availablePorts().at(i).portName());
+    }
+}
+
+void MainWindow::on_spinBoxShakesTarget_editingFinished()
+{
+    shakesTarget = ui->spinBoxShakesTarget->value();
+    handler->commit(QString("1,17,"+QString::number(shakesTarget)+"\n").toUtf8());
 }
