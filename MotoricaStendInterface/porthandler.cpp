@@ -64,7 +64,12 @@ void Porthandler::process(){
                 emit dataGet();
                 if(isWriting){
                     QTextStream out(&file);
-                    out << input;
+                    if(logTimestamp){
+                        QString timestamp = dataTime.toString("hh:mm:ss.zzz");
+                        out << timestamp << " " << input;
+                    }else{
+                        out << input;
+                    }
                 }
             }
         }
@@ -84,6 +89,15 @@ int Porthandler::openFile(){
         return 0;
     }
     QTextStream out(&file);
+    dataTime.setHMS(0,0,0);
     out << header;
     isWriting = true;
+}
+
+bool Porthandler::doLogDebug(bool state){
+    logDebug = state;
+}
+
+bool Porthandler::doLogTimestamp(bool state){
+    logTimestamp = state;
 }

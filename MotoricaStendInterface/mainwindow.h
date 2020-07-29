@@ -62,6 +62,10 @@ private slots:
 
     void on_spinBoxShakesTarget_editingFinished();
 
+    void on_checkBoxLogTimestamp_stateChanged(int arg1);
+
+    void on_checkBoxLogDebug_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     void setupGUI();

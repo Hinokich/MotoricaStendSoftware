@@ -20,6 +20,8 @@ QSerialPortInfo portInfo;
 QString portName;
 int portSpeed = DEFAULT_SPEED;
 bool connected = false;
+bool logTimestamp = false;
+bool logDebug = false;
 
 int timeShake = 0;
 int timeCooling = 0;
@@ -291,7 +293,7 @@ void MainWindow::on_comboBoxDrive_currentIndexChanged(int index)
 
 void MainWindow::on_comboBoxControl_currentIndexChanged(int index)
 {
-
+    handler->commit(QString("1,16,"+QString::number(index)+"\n").toUtf8());
 }
 
 void MainWindow::on_checkBoxShakesTarget_stateChanged(int arg1)
@@ -319,4 +321,22 @@ void MainWindow::on_spinBoxShakesTarget_editingFinished()
 {
     shakesTarget = ui->spinBoxShakesTarget->value();
     handler->commit(QString("1,17,"+QString::number(shakesTarget)+"\n").toUtf8());
+}
+
+void MainWindow::on_checkBoxLogTimestamp_stateChanged(int arg1)
+{
+    if(!arg1){
+        logTimestamp = false;
+    }else{
+        logTimestamp = true;
+    }
+}
+
+void MainWindow::on_checkBoxLogDebug_stateChanged(int arg1)
+{
+    if(!arg1){
+        logDebug = false;
+    }else{
+        logDebug = true;
+    }
 }

@@ -99,13 +99,15 @@ public:
     QCustomPlot *plotter1;
     QCustomPlot *plotter2;
     QGridLayout *gridLayout_3;
-    QCheckBox *checkBoxCurrentSmooth;
+    QCheckBox *checkBoxForceSmooth;
     QPushButton *pushButton;
+    QCheckBox *checkBoxCurrentSmooth;
+    QCheckBox *checkBoxLogDebug;
+    QSpacerItem *horizontalSpacer;
+    QSpinBox *spinBoxTensoCalib;
     QLabel *labelRUD;
     QLabel *labelOverheat;
-    QCheckBox *checkBoxForceSmooth;
-    QSpinBox *spinBoxTensoCalib;
-    QSpacerItem *horizontalSpacer;
+    QCheckBox *checkBoxLogTimestamp;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -473,16 +475,38 @@ public:
 
         gridLayout_3 = new QGridLayout();
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        checkBoxForceSmooth = new QCheckBox(centralwidget);
+        checkBoxForceSmooth->setObjectName(QString::fromUtf8("checkBoxForceSmooth"));
+        checkBoxForceSmooth->setChecked(true);
+
+        gridLayout_3->addWidget(checkBoxForceSmooth, 0, 3, 1, 1);
+
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        gridLayout_3->addWidget(pushButton, 0, 5, 1, 1);
+
         checkBoxCurrentSmooth = new QCheckBox(centralwidget);
         checkBoxCurrentSmooth->setObjectName(QString::fromUtf8("checkBoxCurrentSmooth"));
         checkBoxCurrentSmooth->setChecked(true);
 
         gridLayout_3->addWidget(checkBoxCurrentSmooth, 0, 2, 1, 1);
 
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        checkBoxLogDebug = new QCheckBox(centralwidget);
+        checkBoxLogDebug->setObjectName(QString::fromUtf8("checkBoxLogDebug"));
 
-        gridLayout_3->addWidget(pushButton, 0, 5, 1, 1);
+        gridLayout_3->addWidget(checkBoxLogDebug, 0, 6, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer, 0, 8, 1, 1);
+
+        spinBoxTensoCalib = new QSpinBox(centralwidget);
+        spinBoxTensoCalib->setObjectName(QString::fromUtf8("spinBoxTensoCalib"));
+        spinBoxTensoCalib->setMaximum(10000);
+        spinBoxTensoCalib->setValue(1000);
+
+        gridLayout_3->addWidget(spinBoxTensoCalib, 0, 4, 1, 1);
 
         labelRUD = new QLabel(centralwidget);
         labelRUD->setObjectName(QString::fromUtf8("labelRUD"));
@@ -498,22 +522,10 @@ public:
 
         gridLayout_3->addWidget(labelOverheat, 0, 0, 1, 1);
 
-        checkBoxForceSmooth = new QCheckBox(centralwidget);
-        checkBoxForceSmooth->setObjectName(QString::fromUtf8("checkBoxForceSmooth"));
-        checkBoxForceSmooth->setChecked(true);
+        checkBoxLogTimestamp = new QCheckBox(centralwidget);
+        checkBoxLogTimestamp->setObjectName(QString::fromUtf8("checkBoxLogTimestamp"));
 
-        gridLayout_3->addWidget(checkBoxForceSmooth, 0, 3, 1, 1);
-
-        spinBoxTensoCalib = new QSpinBox(centralwidget);
-        spinBoxTensoCalib->setObjectName(QString::fromUtf8("spinBoxTensoCalib"));
-        spinBoxTensoCalib->setMaximum(10000);
-        spinBoxTensoCalib->setValue(1000);
-
-        gridLayout_3->addWidget(spinBoxTensoCalib, 0, 4, 1, 1);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_3->addItem(horizontalSpacer, 0, 6, 1, 1);
+        gridLayout_3->addWidget(checkBoxLogTimestamp, 0, 7, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_3);
@@ -581,11 +593,14 @@ public:
         pushButtonOpen->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
         pushButtonStart->setText(QApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202", nullptr));
         checkBoxShakesTarget->setText(QApplication::translate("MainWindow", "\320\246\320\265\320\273\321\214 \320\272\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\260 \321\201\320\266\320\260\321\202\320\270\320\271", nullptr));
-        checkBoxCurrentSmooth->setText(QApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\202\320\276\320\272\320\260", nullptr));
+        checkBoxForceSmooth->setText(QApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\201\320\270\320\273\321\213", nullptr));
         pushButton->setText(QApplication::translate("MainWindow", "\320\232\320\260\320\273\320\270\320\261\321\200\320\276\320\262\320\272\320\260 \321\202\320\265\320\275\320\267\320\276", nullptr));
+        checkBoxCurrentSmooth->setText(QApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\202\320\276\320\272\320\260", nullptr));
+        checkBoxLogDebug->setText(QApplication::translate("MainWindow", "\320\241\320\273\321\203\320\266\320\265\320\261\320\275\321\213\320\265\n"
+"\320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \320\262 \320\273\320\276\320\263\320\265", nullptr));
         labelRUD->setText(QString());
         labelOverheat->setText(QString());
-        checkBoxForceSmooth->setText(QApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\201\320\270\320\273\321\213", nullptr));
+        checkBoxLogTimestamp->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\262 \320\273\320\276\320\263\320\265", nullptr));
     } // retranslateUi
 
 };

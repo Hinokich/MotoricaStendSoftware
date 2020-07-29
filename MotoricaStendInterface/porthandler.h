@@ -5,6 +5,7 @@
 #include <QThread>
 #include <QSerialPort>
 #include <QFile>
+#include <QTime>
 
 class Porthandler : public QObject
 {
@@ -17,6 +18,8 @@ public:
     int setPort(QString name);
     int commit(QByteArray txData);
     int openFile();
+    bool doLogDebug(bool state);
+    bool doLogTimestamp(bool state);
 
 signals:
     void dataGet();
@@ -35,6 +38,9 @@ private:
    QByteArray internalBuffer;
    QString header = " Shakes count, Current, Force, Shake Time, Cooling Time, Stop Current, Stop Force, Temp, Nominal Temp, Stop Temp, Noise, Voltage, testState, currentAverage, forceMaximum\n";
    int paramsCount = 15;
+   bool logDebug = false;
+   bool logTimestamp = false;
+   QTime dataTime;
 };
 
 #endif // PORTHANDLER_H
