@@ -66,6 +66,12 @@ private slots:
 
     void on_checkBoxLogDebug_stateChanged(int arg1);
 
+    void on_spinBoxServoPos_editingFinished();
+
+    void on_spinBoxServoPosStart_editingFinished();
+
+    void on_spinBoxServoPosStop_editingFinished();
+
 private:
     Ui::MainWindow *ui;
     void setupGUI();

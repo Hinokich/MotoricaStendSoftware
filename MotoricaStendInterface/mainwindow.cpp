@@ -6,7 +6,7 @@
 #include <QDebug>
 #define DEFAULT_SPEED 115200
 
-QStringList driveTypesList = {"HDLC","Servo","DC","ACH"};
+QStringList driveTypesList = {"-нет-","HDLC","Servo","DC","ACH"};
 QStringList controlTypesList = {"Ток", "Ток+Сила", "Ток+Сила+Температура", "Таймер"};
 QStringList testTypesList = {"Испытание успешно завершено","Идет тестирование", "Пауза", "Остановлен", "Перегрев","Незапланированная саморазборка"};
 QVector<int> values(15);
@@ -288,7 +288,7 @@ void MainWindow::plotScalingSlot(){
 
 void MainWindow::on_comboBoxDrive_currentIndexChanged(int index)
 {
-    handler->commit(QString("1,7,"+QString::number(index+1)+"\n").toUtf8());
+    handler->commit(QString("1,7,"+QString::number(index)+"\n").toUtf8());
 }
 
 void MainWindow::on_comboBoxControl_currentIndexChanged(int index)
@@ -339,4 +339,22 @@ void MainWindow::on_checkBoxLogDebug_stateChanged(int arg1)
     }else{
         logDebug = true;
     }
+}
+
+void MainWindow::on_spinBoxServoPos_editingFinished()
+{
+    int v = ui->spinBoxServoPos->value();
+    handler->commit(QString("1,8,"+QString::number(v)+"\n").toUtf8());
+}
+
+void MainWindow::on_spinBoxServoPosStart_editingFinished()
+{
+    int v = ui->spinBoxServoPosStart->value();
+    handler->commit(QString("1,11,"+QString::number(v)+"\n").toUtf8());
+}
+
+void MainWindow::on_spinBoxServoPosStop_editingFinished()
+{
+    int v = ui->spinBoxServoPosStop->value();
+    handler->commit(QString("1,12,"+QString::number(v)+"\n").toUtf8());
 }

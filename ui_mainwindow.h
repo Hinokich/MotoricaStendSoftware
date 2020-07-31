@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.6
+** Created by: Qt User Interface Compiler version 5.15.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -75,26 +75,32 @@ public:
     QFrame *line_2;
     QGridLayout *gridLayout_2;
     QSpinBox *spinBoxTempStop;
-    QSpinBox *spinBoxTimeCooling;
-    QLabel *label_12;
-    QLabel *label_19;
-    QPushButton *pushButtonClose;
-    QLabel *label_18;
-    QComboBox *comboBoxDrive;
-    QSpinBox *spinBoxTimeShake;
-    QLabel *label_15;
-    QPushButton *pushButtonPause;
-    QLabel *label_17;
+    QLabel *label_24;
     QComboBox *comboBoxControl;
-    QSpinBox *spinBoxForceMinimum;
-    QLabel *label_20;
-    QPushButton *pushButtonStop;
-    QSpinBox *spinBoxCurrentStop;
-    QLabel *label_16;
     QPushButton *pushButtonOpen;
-    QPushButton *pushButtonStart;
-    QCheckBox *checkBoxShakesTarget;
+    QSpinBox *spinBoxTimeShake;
+    QPushButton *pushButtonClose;
+    QSpinBox *spinBoxTimeCooling;
+    QLabel *label_17;
     QSpinBox *spinBoxShakesTarget;
+    QLabel *label_15;
+    QLabel *label_23;
+    QComboBox *comboBoxDrive;
+    QPushButton *pushButtonStart;
+    QLabel *label_16;
+    QPushButton *pushButtonPause;
+    QSpinBox *spinBoxForceMinimum;
+    QLabel *label_18;
+    QLabel *label_12;
+    QSpinBox *spinBoxCurrentStop;
+    QLabel *label_19;
+    QPushButton *pushButtonStop;
+    QLabel *label_20;
+    QCheckBox *checkBoxShakesTarget;
+    QLabel *label_25;
+    QSpinBox *spinBoxServoPos;
+    QSpinBox *spinBoxServoPosStart;
+    QSpinBox *spinBoxServoPosStop;
     QHBoxLayout *horizontalLayout_3;
     QCustomPlot *plotter1;
     QCustomPlot *plotter2;
@@ -115,7 +121,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1031, 828);
+        MainWindow->resize(1113, 908);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -327,41 +333,24 @@ public:
 
         gridLayout_2->addWidget(spinBoxTempStop, 9, 1, 1, 1);
 
-        spinBoxTimeCooling = new QSpinBox(centralwidget);
-        spinBoxTimeCooling->setObjectName(QString::fromUtf8("spinBoxTimeCooling"));
-        spinBoxTimeCooling->setMaximum(100000);
-        spinBoxTimeCooling->setValue(1000);
+        label_24 = new QLabel(centralwidget);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
 
-        gridLayout_2->addWidget(spinBoxTimeCooling, 6, 1, 1, 1);
+        gridLayout_2->addWidget(label_24, 12, 0, 1, 1);
 
-        label_12 = new QLabel(centralwidget);
-        label_12->setObjectName(QString::fromUtf8("label_12"));
+        comboBoxControl = new QComboBox(centralwidget);
+        comboBoxControl->setObjectName(QString::fromUtf8("comboBoxControl"));
 
-        gridLayout_2->addWidget(label_12, 0, 0, 1, 1);
+        gridLayout_2->addWidget(comboBoxControl, 1, 1, 1, 1);
 
-        label_19 = new QLabel(centralwidget);
-        label_19->setObjectName(QString::fromUtf8("label_19"));
-
-        gridLayout_2->addWidget(label_19, 8, 0, 1, 1);
-
-        pushButtonClose = new QPushButton(centralwidget);
-        pushButtonClose->setObjectName(QString::fromUtf8("pushButtonClose"));
+        pushButtonOpen = new QPushButton(centralwidget);
+        pushButtonOpen->setObjectName(QString::fromUtf8("pushButtonOpen"));
         QFont font;
         font.setBold(true);
         font.setWeight(75);
-        pushButtonClose->setFont(font);
+        pushButtonOpen->setFont(font);
 
-        gridLayout_2->addWidget(pushButtonClose, 4, 1, 1, 1);
-
-        label_18 = new QLabel(centralwidget);
-        label_18->setObjectName(QString::fromUtf8("label_18"));
-
-        gridLayout_2->addWidget(label_18, 7, 0, 1, 1);
-
-        comboBoxDrive = new QComboBox(centralwidget);
-        comboBoxDrive->setObjectName(QString::fromUtf8("comboBoxDrive"));
-
-        gridLayout_2->addWidget(comboBoxDrive, 0, 1, 1, 1);
+        gridLayout_2->addWidget(pushButtonOpen, 4, 0, 1, 1);
 
         spinBoxTimeShake = new QSpinBox(centralwidget);
         spinBoxTimeShake->setObjectName(QString::fromUtf8("spinBoxTimeShake"));
@@ -370,77 +359,23 @@ public:
 
         gridLayout_2->addWidget(spinBoxTimeShake, 5, 1, 1, 1);
 
-        label_15 = new QLabel(centralwidget);
-        label_15->setObjectName(QString::fromUtf8("label_15"));
+        pushButtonClose = new QPushButton(centralwidget);
+        pushButtonClose->setObjectName(QString::fromUtf8("pushButtonClose"));
+        pushButtonClose->setFont(font);
 
-        gridLayout_2->addWidget(label_15, 1, 0, 1, 1);
+        gridLayout_2->addWidget(pushButtonClose, 4, 1, 1, 1);
 
-        pushButtonPause = new QPushButton(centralwidget);
-        pushButtonPause->setObjectName(QString::fromUtf8("pushButtonPause"));
-        pushButtonPause->setFont(font);
-        pushButtonPause->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 218, 123);"));
+        spinBoxTimeCooling = new QSpinBox(centralwidget);
+        spinBoxTimeCooling->setObjectName(QString::fromUtf8("spinBoxTimeCooling"));
+        spinBoxTimeCooling->setMaximum(100000);
+        spinBoxTimeCooling->setValue(1000);
 
-        gridLayout_2->addWidget(pushButtonPause, 2, 1, 1, 1);
+        gridLayout_2->addWidget(spinBoxTimeCooling, 6, 1, 1, 1);
 
         label_17 = new QLabel(centralwidget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
 
         gridLayout_2->addWidget(label_17, 6, 0, 1, 1);
-
-        comboBoxControl = new QComboBox(centralwidget);
-        comboBoxControl->setObjectName(QString::fromUtf8("comboBoxControl"));
-
-        gridLayout_2->addWidget(comboBoxControl, 1, 1, 1, 1);
-
-        spinBoxForceMinimum = new QSpinBox(centralwidget);
-        spinBoxForceMinimum->setObjectName(QString::fromUtf8("spinBoxForceMinimum"));
-        spinBoxForceMinimum->setMaximum(1000000);
-        spinBoxForceMinimum->setValue(5000);
-
-        gridLayout_2->addWidget(spinBoxForceMinimum, 7, 1, 1, 1);
-
-        label_20 = new QLabel(centralwidget);
-        label_20->setObjectName(QString::fromUtf8("label_20"));
-
-        gridLayout_2->addWidget(label_20, 9, 0, 1, 1);
-
-        pushButtonStop = new QPushButton(centralwidget);
-        pushButtonStop->setObjectName(QString::fromUtf8("pushButtonStop"));
-        pushButtonStop->setFont(font);
-        pushButtonStop->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 155, 190);"));
-
-        gridLayout_2->addWidget(pushButtonStop, 3, 0, 1, 2);
-
-        spinBoxCurrentStop = new QSpinBox(centralwidget);
-        spinBoxCurrentStop->setObjectName(QString::fromUtf8("spinBoxCurrentStop"));
-        spinBoxCurrentStop->setMaximum(10000);
-        spinBoxCurrentStop->setValue(600);
-
-        gridLayout_2->addWidget(spinBoxCurrentStop, 8, 1, 1, 1);
-
-        label_16 = new QLabel(centralwidget);
-        label_16->setObjectName(QString::fromUtf8("label_16"));
-
-        gridLayout_2->addWidget(label_16, 5, 0, 1, 1);
-
-        pushButtonOpen = new QPushButton(centralwidget);
-        pushButtonOpen->setObjectName(QString::fromUtf8("pushButtonOpen"));
-        pushButtonOpen->setFont(font);
-
-        gridLayout_2->addWidget(pushButtonOpen, 4, 0, 1, 1);
-
-        pushButtonStart = new QPushButton(centralwidget);
-        pushButtonStart->setObjectName(QString::fromUtf8("pushButtonStart"));
-        pushButtonStart->setFont(font);
-        pushButtonStart->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 255, 127);"));
-
-        gridLayout_2->addWidget(pushButtonStart, 2, 0, 1, 1);
-
-        checkBoxShakesTarget = new QCheckBox(centralwidget);
-        checkBoxShakesTarget->setObjectName(QString::fromUtf8("checkBoxShakesTarget"));
-        checkBoxShakesTarget->setLayoutDirection(Qt::LeftToRight);
-
-        gridLayout_2->addWidget(checkBoxShakesTarget, 10, 0, 1, 1);
 
         spinBoxShakesTarget = new QSpinBox(centralwidget);
         spinBoxShakesTarget->setObjectName(QString::fromUtf8("spinBoxShakesTarget"));
@@ -449,6 +384,111 @@ public:
         spinBoxShakesTarget->setValue(1000);
 
         gridLayout_2->addWidget(spinBoxShakesTarget, 10, 1, 1, 1);
+
+        label_15 = new QLabel(centralwidget);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+
+        gridLayout_2->addWidget(label_15, 1, 0, 1, 1);
+
+        label_23 = new QLabel(centralwidget);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+
+        gridLayout_2->addWidget(label_23, 11, 0, 1, 1);
+
+        comboBoxDrive = new QComboBox(centralwidget);
+        comboBoxDrive->setObjectName(QString::fromUtf8("comboBoxDrive"));
+
+        gridLayout_2->addWidget(comboBoxDrive, 0, 1, 1, 1);
+
+        pushButtonStart = new QPushButton(centralwidget);
+        pushButtonStart->setObjectName(QString::fromUtf8("pushButtonStart"));
+        pushButtonStart->setFont(font);
+        pushButtonStart->setStyleSheet(QString::fromUtf8("background-color: rgb(170, 255, 127);"));
+
+        gridLayout_2->addWidget(pushButtonStart, 2, 0, 1, 1);
+
+        label_16 = new QLabel(centralwidget);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+
+        gridLayout_2->addWidget(label_16, 5, 0, 1, 1);
+
+        pushButtonPause = new QPushButton(centralwidget);
+        pushButtonPause->setObjectName(QString::fromUtf8("pushButtonPause"));
+        pushButtonPause->setFont(font);
+        pushButtonPause->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 218, 123);"));
+
+        gridLayout_2->addWidget(pushButtonPause, 2, 1, 1, 1);
+
+        spinBoxForceMinimum = new QSpinBox(centralwidget);
+        spinBoxForceMinimum->setObjectName(QString::fromUtf8("spinBoxForceMinimum"));
+        spinBoxForceMinimum->setMaximum(1000000);
+        spinBoxForceMinimum->setValue(5000);
+
+        gridLayout_2->addWidget(spinBoxForceMinimum, 7, 1, 1, 1);
+
+        label_18 = new QLabel(centralwidget);
+        label_18->setObjectName(QString::fromUtf8("label_18"));
+
+        gridLayout_2->addWidget(label_18, 7, 0, 1, 1);
+
+        label_12 = new QLabel(centralwidget);
+        label_12->setObjectName(QString::fromUtf8("label_12"));
+
+        gridLayout_2->addWidget(label_12, 0, 0, 1, 1);
+
+        spinBoxCurrentStop = new QSpinBox(centralwidget);
+        spinBoxCurrentStop->setObjectName(QString::fromUtf8("spinBoxCurrentStop"));
+        spinBoxCurrentStop->setMaximum(10000);
+        spinBoxCurrentStop->setValue(600);
+
+        gridLayout_2->addWidget(spinBoxCurrentStop, 8, 1, 1, 1);
+
+        label_19 = new QLabel(centralwidget);
+        label_19->setObjectName(QString::fromUtf8("label_19"));
+
+        gridLayout_2->addWidget(label_19, 8, 0, 1, 1);
+
+        pushButtonStop = new QPushButton(centralwidget);
+        pushButtonStop->setObjectName(QString::fromUtf8("pushButtonStop"));
+        pushButtonStop->setFont(font);
+        pushButtonStop->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 155, 190);"));
+
+        gridLayout_2->addWidget(pushButtonStop, 3, 0, 1, 2);
+
+        label_20 = new QLabel(centralwidget);
+        label_20->setObjectName(QString::fromUtf8("label_20"));
+
+        gridLayout_2->addWidget(label_20, 9, 0, 1, 1);
+
+        checkBoxShakesTarget = new QCheckBox(centralwidget);
+        checkBoxShakesTarget->setObjectName(QString::fromUtf8("checkBoxShakesTarget"));
+        checkBoxShakesTarget->setLayoutDirection(Qt::LeftToRight);
+
+        gridLayout_2->addWidget(checkBoxShakesTarget, 10, 0, 1, 1);
+
+        label_25 = new QLabel(centralwidget);
+        label_25->setObjectName(QString::fromUtf8("label_25"));
+
+        gridLayout_2->addWidget(label_25, 13, 0, 1, 1);
+
+        spinBoxServoPos = new QSpinBox(centralwidget);
+        spinBoxServoPos->setObjectName(QString::fromUtf8("spinBoxServoPos"));
+        spinBoxServoPos->setMaximum(360);
+
+        gridLayout_2->addWidget(spinBoxServoPos, 11, 1, 1, 1);
+
+        spinBoxServoPosStart = new QSpinBox(centralwidget);
+        spinBoxServoPosStart->setObjectName(QString::fromUtf8("spinBoxServoPosStart"));
+        spinBoxServoPosStart->setMaximum(360);
+
+        gridLayout_2->addWidget(spinBoxServoPosStart, 12, 1, 1, 1);
+
+        spinBoxServoPosStop = new QSpinBox(centralwidget);
+        spinBoxServoPosStop->setObjectName(QString::fromUtf8("spinBoxServoPosStop"));
+        spinBoxServoPosStop->setMaximum(360);
+        spinBoxServoPosStop->setValue(180);
+
+        gridLayout_2->addWidget(spinBoxServoPosStop, 13, 1, 1, 1);
 
 
         horizontalLayout_2->addLayout(gridLayout_2);
@@ -533,7 +573,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1031, 26));
+        menubar->setGeometry(QRect(0, 0, 1113, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -546,61 +586,64 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "\320\237\320\260\320\275\320\265\320\273\321\214 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\321\217 \321\201\321\202\320\265\320\275\320\264\320\276\320\274 \320\236\320\242\320\232", nullptr));
-        labelVoltage->setText(QApplication::translate("MainWindow", "0", nullptr));
-        label_8->setText(QApplication::translate("MainWindow", "\320\242\320\265\320\274\320\277. \320\276\321\201\321\202\320\260\320\275\320\276\320\262\320\272\320\270", nullptr));
-        labelForce->setText(QApplication::translate("MainWindow", "0", nullptr));
-        labelTimeCooling->setText(QApplication::translate("MainWindow", "0", nullptr));
-        label_7->setText(QApplication::translate("MainWindow", "\320\243\321\200\320\276\320\262\320\265\320\275\321\214 \321\210\321\203\320\274\320\260", nullptr));
-        label_11->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\277\321\200\320\276\321\201\321\202\320\276\321\217", nullptr));
-        label_14->setText(QApplication::translate("MainWindow", "\320\234\320\270\320\275\320\270\320\274\320\260\320\273\321\214\320\275\320\260\321\217 \321\201\320\270\320\273\320\260", nullptr));
-        label_13->setText(QApplication::translate("MainWindow", "\320\242\320\276\320\272 \320\276\321\202\321\201\320\265\321\207\320\272\320\270", nullptr));
-        labelTimeShake->setText(QApplication::translate("MainWindow", "0", nullptr));
-        labelForceMaximum->setText(QApplication::translate("MainWindow", "0", nullptr));
-        labelForceMinimum->setText(QApplication::translate("MainWindow", "0", nullptr));
-        labelCurrentAverage->setText(QApplication::translate("MainWindow", "0", nullptr));
-        label_9->setText(QApplication::translate("MainWindow", "\320\235\320\260\320\277\321\200\321\217\320\266\320\265\320\275\320\270\320\265", nullptr));
-        label->setText(QApplication::translate("MainWindow", "\320\241\321\200\320\265\320\264\320\275\320\270\320\271 \321\202\320\276\320\272 \321\206\320\270\320\272\320\273\320\260", nullptr));
-        labelTempNom->setText(QApplication::translate("MainWindow", "0", nullptr));
-        pushButtonConnect->setText(QApplication::translate("MainWindow", "\320\241\320\276\320\265\320\264\320\270\320\275\320\265\320\275\320\270\320\265", nullptr));
-        labelShakesCount->setText(QApplication::translate("MainWindow", "0", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "\320\237\320\260\320\275\320\265\320\273\321\214 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\321\217 \321\201\321\202\320\265\320\275\320\264\320\276\320\274 \320\236\320\242\320\232", nullptr));
+        labelVoltage->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "\320\242\320\265\320\274\320\277. \320\276\321\201\321\202\320\260\320\275\320\276\320\262\320\272\320\270", nullptr));
+        labelForce->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        labelTimeCooling->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "\320\243\321\200\320\276\320\262\320\265\320\275\321\214 \321\210\321\203\320\274\320\260", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\277\321\200\320\276\321\201\321\202\320\276\321\217", nullptr));
+        label_14->setText(QCoreApplication::translate("MainWindow", "\320\234\320\270\320\275\320\270\320\274\320\260\320\273\321\214\320\275\320\260\321\217 \321\201\320\270\320\273\320\260", nullptr));
+        label_13->setText(QCoreApplication::translate("MainWindow", "\320\242\320\276\320\272 \320\276\321\202\321\201\320\265\321\207\320\272\320\270", nullptr));
+        labelTimeShake->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        labelForceMaximum->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        labelForceMinimum->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        labelCurrentAverage->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\320\277\321\200\321\217\320\266\320\265\320\275\320\270\320\265", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "\320\241\321\200\320\265\320\264\320\275\320\270\320\271 \321\202\320\276\320\272 \321\206\320\270\320\272\320\273\320\260", nullptr));
+        labelTempNom->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        pushButtonConnect->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\320\265\320\264\320\270\320\275\320\265\320\275\320\270\320\265", nullptr));
+        labelShakesCount->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         labelLogo->setText(QString());
-        label_3->setText(QApplication::translate("MainWindow", "\320\241\320\270\320\273\320\260 \321\202\320\276\320\272\320\260", nullptr));
-        label_5->setText(QApplication::translate("MainWindow", "\320\242\320\265\320\274\320\277\320\265\321\200\320\260\321\202\321\203\321\200\320\260", nullptr));
-        labelTestState->setText(QApplication::translate("MainWindow", "\320\236\321\201\321\202\320\260\320\275\320\276\320\262\320\273\320\265\320\275", nullptr));
-        label_22->setText(QApplication::translate("MainWindow", "\320\241\320\276\321\201\321\202\320\276\321\217\320\275\320\270\320\265 \320\270\321\201\320\277\321\213\321\202\320\260\320\275\320\270\320\271", nullptr));
-        labelNoise->setText(QApplication::translate("MainWindow", "0", nullptr));
-        labelCurrentStop->setText(QApplication::translate("MainWindow", "0", nullptr));
-        label_21->setText(QApplication::translate("MainWindow", "\320\234\320\260\320\272\321\201\320\270\320\274\320\260\320\273\321\214\320\275\320\276\320\265 \321\203\321\201\320\270\320\273\320\270\320\265 \320\267\320\260 \321\206\320\270\320\272\320\273", nullptr));
-        label_4->setText(QApplication::translate("MainWindow", "\320\241\320\270\320\273\320\260", nullptr));
-        label_10->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \321\201\320\266\320\260\321\202\320\270\321\217", nullptr));
-        labelTempStop->setText(QApplication::translate("MainWindow", "0", nullptr));
-        label_2->setText(QApplication::translate("MainWindow", "\320\241\320\266\320\260\321\202\320\270\321\217", nullptr));
-        labelCurrent->setText(QApplication::translate("MainWindow", "0", nullptr));
-        labelTemp->setText(QApplication::translate("MainWindow", "0", nullptr));
-        label_6->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\274. \321\202\320\265\320\274\320\277\320\265\321\200\320\260\321\202\321\203\321\200\320\260", nullptr));
-        pushButtonRefresh->setText(QApplication::translate("MainWindow", "\320\236\320\261\320\275\320\276\320\262\320\270\321\202\321\214", nullptr));
-        label_12->setText(QApplication::translate("MainWindow", "\320\242\320\270\320\277 \320\277\321\200\320\270\320\262\320\276\320\264\320\260", nullptr));
-        label_19->setText(QApplication::translate("MainWindow", "\320\242\320\276\320\272 \320\276\321\202\321\201\320\265\321\207\320\272\320\270, \320\274\320\220", nullptr));
-        pushButtonClose->setText(QApplication::translate("MainWindow", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", nullptr));
-        label_18->setText(QApplication::translate("MainWindow", "\320\234\320\270\320\275\320\270\320\274\320\260\320\273\321\214\320\275\320\260\321\217 \321\201\320\270\320\273\320\260", nullptr));
-        label_15->setText(QApplication::translate("MainWindow", "\320\242\320\270\320\277 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\321\217", nullptr));
-        pushButtonPause->setText(QApplication::translate("MainWindow", "\320\237\320\260\321\203\320\267\320\260", nullptr));
-        label_17->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\277\321\200\320\276\321\201\321\202\320\276\321\217, \320\274\321\201", nullptr));
-        label_20->setText(QApplication::translate("MainWindow", "\320\242\320\265\320\274\320\277\320\265\321\200\320\260\321\202\321\203\321\200\320\260 \320\276\321\201\321\202\320\260\320\275\320\276\320\262\320\272\320\270, C", nullptr));
-        pushButtonStop->setText(QApplication::translate("MainWindow", "\320\241\321\202\320\276\320\277", nullptr));
-        label_16->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \321\201\320\266\320\260\321\202\320\270\321\217, \320\274\321\201", nullptr));
-        pushButtonOpen->setText(QApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
-        pushButtonStart->setText(QApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202", nullptr));
-        checkBoxShakesTarget->setText(QApplication::translate("MainWindow", "\320\246\320\265\320\273\321\214 \320\272\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\260 \321\201\320\266\320\260\321\202\320\270\320\271", nullptr));
-        checkBoxForceSmooth->setText(QApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\201\320\270\320\273\321\213", nullptr));
-        pushButton->setText(QApplication::translate("MainWindow", "\320\232\320\260\320\273\320\270\320\261\321\200\320\276\320\262\320\272\320\260 \321\202\320\265\320\275\320\267\320\276", nullptr));
-        checkBoxCurrentSmooth->setText(QApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\202\320\276\320\272\320\260", nullptr));
-        checkBoxLogDebug->setText(QApplication::translate("MainWindow", "\320\241\320\273\321\203\320\266\320\265\320\261\320\275\321\213\320\265\n"
+        label_3->setText(QCoreApplication::translate("MainWindow", "\320\241\320\270\320\273\320\260 \321\202\320\276\320\272\320\260", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\320\242\320\265\320\274\320\277\320\265\321\200\320\260\321\202\321\203\321\200\320\260", nullptr));
+        labelTestState->setText(QCoreApplication::translate("MainWindow", "\320\236\321\201\321\202\320\260\320\275\320\276\320\262\320\273\320\265\320\275", nullptr));
+        label_22->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\201\321\202\320\276\321\217\320\275\320\270\320\265 \320\270\321\201\320\277\321\213\321\202\320\260\320\275\320\270\320\271", nullptr));
+        labelNoise->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        labelCurrentStop->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_21->setText(QCoreApplication::translate("MainWindow", "\320\234\320\260\320\272\321\201\320\270\320\274\320\260\320\273\321\214\320\275\320\276\320\265 \321\203\321\201\320\270\320\273\320\270\320\265 \320\267\320\260 \321\206\320\270\320\272\320\273", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "\320\241\320\270\320\273\320\260", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \321\201\320\266\320\260\321\202\320\270\321\217", nullptr));
+        labelTempStop->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\320\241\320\266\320\260\321\202\320\270\321\217", nullptr));
+        labelCurrent->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        labelTemp->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "\320\235\320\276\320\274. \321\202\320\265\320\274\320\277\320\265\321\200\320\260\321\202\321\203\321\200\320\260", nullptr));
+        pushButtonRefresh->setText(QCoreApplication::translate("MainWindow", "\320\236\320\261\320\275\320\276\320\262\320\270\321\202\321\214", nullptr));
+        label_24->setText(QCoreApplication::translate("MainWindow", "\320\235\320\260\321\207\320\260\320\273\321\214\320\275\321\213\320\271 \321\203\320\263\320\276\320\273 \321\201\320\265\321\200\320\262\320\276\320\277\321\200\320\270\320\262\320\276\320\264\320\260", nullptr));
+        pushButtonOpen->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\321\200\321\213\321\202\321\214", nullptr));
+        pushButtonClose->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\272\321\200\321\213\321\202\321\214", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\277\321\200\320\276\321\201\321\202\320\276\321\217, \320\274\321\201", nullptr));
+        label_15->setText(QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\321\217", nullptr));
+        label_23->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\276\320\270\320\267\320\262\320\276\320\273\321\214\320\275\320\260\321\217 \320\277\320\276\320\267\320\270\321\206\320\270\321\217 \321\201\320\265\321\200\320\262\320\276\320\277\321\200\320\270\320\262\320\276\320\264\320\260", nullptr));
+        pushButtonStart->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\260\321\200\321\202", nullptr));
+        label_16->setText(QCoreApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \321\201\320\266\320\260\321\202\320\270\321\217, \320\274\321\201", nullptr));
+        pushButtonPause->setText(QCoreApplication::translate("MainWindow", "\320\237\320\260\321\203\320\267\320\260", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "\320\234\320\270\320\275\320\270\320\274\320\260\320\273\321\214\320\275\320\260\321\217 \321\201\320\270\320\273\320\260", nullptr));
+        label_12->setText(QCoreApplication::translate("MainWindow", "\320\242\320\270\320\277 \320\277\321\200\320\270\320\262\320\276\320\264\320\260", nullptr));
+        label_19->setText(QCoreApplication::translate("MainWindow", "\320\242\320\276\320\272 \320\276\321\202\321\201\320\265\321\207\320\272\320\270, \320\274\320\220", nullptr));
+        pushButtonStop->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\276\320\277", nullptr));
+        label_20->setText(QCoreApplication::translate("MainWindow", "\320\242\320\265\320\274\320\277\320\265\321\200\320\260\321\202\321\203\321\200\320\260 \320\276\321\201\321\202\320\260\320\275\320\276\320\262\320\272\320\270, C", nullptr));
+        checkBoxShakesTarget->setText(QCoreApplication::translate("MainWindow", "\320\246\320\265\320\273\321\214 \320\272\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\260 \321\201\320\266\320\260\321\202\320\270\320\271", nullptr));
+        label_25->setText(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\275\320\265\321\207\320\275\321\213\320\271 \321\203\320\263\320\276\320\273 \321\201\320\265\321\200\320\262\320\276\320\277\321\200\320\270\320\262\320\276\320\264\320\260", nullptr));
+        checkBoxForceSmooth->setText(QCoreApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\201\320\270\320\273\321\213", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "\320\232\320\260\320\273\320\270\320\261\321\200\320\276\320\262\320\272\320\260 \321\202\320\265\320\275\320\267\320\276", nullptr));
+        checkBoxCurrentSmooth->setText(QCoreApplication::translate("MainWindow", "\320\241\320\263\320\273\320\260\320\266\320\270\320\262\320\260\320\275\320\270\320\265 \321\202\320\276\320\272\320\260", nullptr));
+        checkBoxLogDebug->setText(QCoreApplication::translate("MainWindow", "\320\241\320\273\321\203\320\266\320\265\320\261\320\275\321\213\320\265\n"
 "\320\277\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213 \320\262 \320\273\320\276\320\263\320\265", nullptr));
         labelRUD->setText(QString());
         labelOverheat->setText(QString());
-        checkBoxLogTimestamp->setText(QApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\262 \320\273\320\276\320\263\320\265", nullptr));
+        checkBoxLogTimestamp->setText(QCoreApplication::translate("MainWindow", "\320\222\321\200\320\265\320\274\321\217 \320\262 \320\273\320\276\320\263\320\265", nullptr));
     } // retranslateUi
 
 };
